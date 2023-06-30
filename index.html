@@ -188,90 +188,94 @@
 
     <!-- shop content end -->
     <!---about section start-->
-    <!-- About section -->
     <section class="about-section">
         <div class="image-container">
-            <img src="2ndappbwebsite/biopic (2).png" alt="Background Image" class="background-image">
             <img src="2ndappbwebsite/biopic.png" alt="Overlay Image" class="overlay-image">
+            <img src="2ndappbwebsite/biopic (2).png" alt="Background Image" class="background-image">
         </div>
         <div class="text-container">
-            <h2><u>About Us</u></h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora nihil animi, laudantium beatae
-                assumenda nemo incidunt ipsam maiores sed esse nulla consequuntur, autem quam id quo consequatur ex
-                reprehenderit.</p>
+            <h2 style="font-family: 'Bacasime Antique', serif;
+        font-family: 'Satisfy', cursive;"><u>About Us</u></h2>
+            <p style="font-family: 'Bacasime Antique', serif;
+        font-family: 'Satisfy', cursive;">Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Voluptas tempora nihil animi, laudantium beatae
+                assumenda nemo incidunt ipsam maiores sed esse nulla
+                consequuntur, autem quam id quo consequatur ex reprehenderit.</p>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.querySelector(".overlay");
 
+            function checkScroll() {
+                const elementPosition = document.querySelector(".about-section").getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementPosition < windowHeight / 2) {
+                    overlay.style.opacity = "1";
+                } else {
+                    overlay.style.opacity = "0";
+                }
+            }
+
+            window.addEventListener("scroll", checkScroll);
+        });
+    </script>
     <style>
         .about-section {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
+            height: 400px;
             color: #B277FA;
         }
 
         .image-container {
             position: relative;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
+            margin-right: 50px;
         }
 
-        .background-image,
         .overlay-image {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            right: 0;
+            animation: slide-in 8s;
+            transition: opacity 0.8s;
+            /* Add transition property */
+
         }
 
-        .overlay-image {
-            transform: translateY(-100%);
-        }
-
-        .about-section.active .background-image {
-            transform: translateY(100%);
-        }
-
-        .about-section.active .overlay-image {
-            transform: translateY(0);
+        .background-image {
+            width: 300;
+            height: 300;
+            animation: slide-in 3s;
         }
 
         .text-container {
-            margin-left: 20px;
-            width: 50%;
-        }
-    </style>
-
-    <script>
-        function isInViewport(element) {
-            var rect = element.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
+            margin-right: 50px;
         }
 
-        function handleScroll() {
-            var aboutSection = document.querySelector('.about-section');
+        @keyframes slide-in {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
 
-            if (isInViewport(aboutSection)) {
-                aboutSection.classList.add('active');
-            } else {
-                aboutSection.classList.remove('active');
+            100% {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            window.addEventListener('scroll', handleScroll);
-        });
-    </script>
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+    </style>
 
-    <!---about section end -->
+
+    <!---about section end-->
+
 
     <!-- shop content-->
     <style>
